@@ -3,12 +3,14 @@
 ## GitHub Pages Setup
 
 ### Prerequisites
+
 - Repository must be public on GitHub
 - GitHub Pages feature enabled in repository settings
 
 ### Quick Setup Steps
 
 1. **Enable GitHub Pages:**
+
    ```bash
    # Navigate to your repository on GitHub
    # Go to Settings → Pages
@@ -18,6 +20,7 @@
    ```
 
 2. **Verify Deployment:**
+
    ```bash
    # Your site will be available at:
    # https://hah23255.github.io/VS-Code/
@@ -32,6 +35,7 @@
 ## Local Development
 
 ### HTTP Server Setup
+
 ```bash
 # Python 3.x
 python -m http.server 8080
@@ -47,6 +51,7 @@ php -S localhost:8080
 ```
 
 ### Access Demos Locally
+
 ```bash
 # Main index page
 http://localhost:8080/
@@ -72,6 +77,7 @@ http://localhost:8080/251113/speed-evaluation.html
    - Builds and publishes on push to main
 
 ### Manual Deployment
+
 ```bash
 # Push changes to trigger deployment
 git add .
@@ -85,14 +91,16 @@ git push origin main
 ## Repository Configuration
 
 ### Topics to Add
+
 ```bash
 # Add these topics in GitHub repository settings
-javascript, html5, css3, educational, interactive-demos, 
-visualization, algorithms, frontend, learning-resources, 
+javascript, html5, css3, educational, interactive-demos,
+visualization, algorithms, frontend, learning-resources,
 code-examples, programming-tutorial, web-development
 ```
 
 ### Repository Description
+
 ```text
 📚 Educational JavaScript examples with interactive HTML5 visualizations, modern tooling setup, and professional CI/CD pipeline
 ```
@@ -100,14 +108,16 @@ code-examples, programming-tutorial, web-development
 ## Monitoring & Analytics
 
 ### GitHub Insights
+
 - Traffic analytics in repository Insights tab
 - Visitor statistics and popular pages
 - Clone and download metrics
 
 ### Performance Monitoring
+
 ```javascript
 // Add to HTML files for basic analytics
-console.log('Demo accessed:', window.location.pathname);
+console.log("Demo accessed:", window.location.pathname);
 ```
 
 ## Troubleshooting
@@ -128,6 +138,7 @@ console.log('Demo accessed:', window.location.pathname);
    - Update HTTP URLs to HTTPS
 
 ### Debug Commands
+
 ```bash
 # Check git status
 git status

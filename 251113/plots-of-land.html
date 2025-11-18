@@ -1,359 +1,439 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Plot of Land Visualizer</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1d4ed8);
-            min-height: 100vh;
-            margin: 0;
-            color: #0f172a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 32px;
-        }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+        background: linear-gradient(135deg, #0f172a, #1d4ed8);
+        min-height: 100vh;
+        margin: 0;
+        color: #0f172a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 32px;
+      }
+      .glass-card {
+        width: min(1100px, 100%);
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 25px 60px rgba(15, 23, 42, 0.45);
+        display: grid;
+        grid-template-columns: minmax(320px, 1fr) 1.2fr;
+        gap: 32px;
+      }
+      h1 {
+        margin-bottom: 8px;
+        font-size: 28px;
+        color: #0f172a;
+      }
+      p.lead {
+        margin-top: 0;
+        color: #475569;
+        font-size: 14px;
+      }
+      .panel {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .panel h2 {
+        font-size: 18px;
+        margin: 0;
+        color: #0f172a;
+      }
+      label {
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #475569;
+        margin-bottom: 6px;
+      }
+      .input-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      input[type="number"],
+      select {
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid #cbd5f5;
+        font-size: 14px;
+        font-family: inherit;
+      }
+      button {
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: none;
+        background: linear-gradient(135deg, #2563eb, #9333ea);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+      button:hover {
+        transform: translateY(-2px);
+      }
+      .status-block {
+        border-radius: 16px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 16px;
+        min-height: 180px;
+      }
+      .status-block ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .status-block li {
+        margin-bottom: 10px;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .status-block li:last-child {
+        border-bottom: none;
+      }
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 10px;
+        display: inline-flex;
+      }
+      .status-inside .status-dot {
+        background: #10b981;
+      }
+      .status-border .status-dot {
+        background: #f97316;
+      }
+      .status-outside .status-dot {
+        background: #ef4444;
+      }
+      .status-label {
+        font-size: 12px;
+        color: #475569;
+      }
+      canvas {
+        width: 100%;
+        height: 400px;
+        border-radius: 18px;
+        background: #0f172a;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+      }
+      .legend {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-size: 12px;
+      }
+      .legend span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.08);
+        color: #0f172a;
+      }
+      .legend span::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        background: currentColor;
+      }
+      .fullscreen-legend span:nth-child(1) {
+        color: #38bdf8;
+      }
+      .fullscreen-legend span:nth-child(2) {
+        color: #f97316;
+      }
+      .fullscreen-legend span:nth-child(3) {
+        color: #10b981;
+      }
+      @media (max-width: 960px) {
         .glass-card {
-            width: min(1100px, 100%);
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 24px;
-            padding: 32px;
-            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.45);
-            display: grid;
-            grid-template-columns: minmax(320px, 1fr) 1.2fr;
-            gap: 32px;
-        }
-        h1 {
-            margin-bottom: 8px;
-            font-size: 28px;
-            color: #0f172a;
-        }
-        p.lead {
-            margin-top: 0;
-            color: #475569;
-            font-size: 14px;
-        }
-        .panel {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        .panel h2 {
-            font-size: 18px;
-            margin: 0;
-            color: #0f172a;
-        }
-        label {
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #475569;
-            margin-bottom: 6px;
-        }
-        .input-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-        }
-        input[type='number'], select {
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1px solid #cbd5f5;
-            font-size: 14px;
-            font-family: inherit;
-        }
-        button {
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: none;
-            background: linear-gradient(135deg, #2563eb, #9333ea);
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        button:hover {
-            transform: translateY(-2px);
-        }
-        .status-block {
-            border-radius: 16px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 16px;
-            min-height: 180px;
-        }
-        .status-block ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .status-block li {
-            margin-bottom: 10px;
-            font-size: 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .status-block li:last-child {
-            border-bottom: none;
-        }
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 10px;
-            display: inline-flex;
-        }
-        .status-inside .status-dot { background: #10b981; }
-        .status-border .status-dot { background: #f97316; }
-        .status-outside .status-dot { background: #ef4444; }
-        .status-label {
-            font-size: 12px;
-            color: #475569;
+          grid-template-columns: 1fr;
         }
         canvas {
-            width: 100%;
-            height: 400px;
-            border-radius: 18px;
-            background: #0f172a;
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+          height: 320px;
         }
-        .legend {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            font-size: 12px;
-        }
-        .legend span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: rgba(15, 23, 42, 0.08);
-            color: #0f172a;
-        }
-        .legend span::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            display: inline-block;
-            background: currentColor;
-        }
-        .fullscreen-legend span:nth-child(1) { color: #38bdf8; }
-        .fullscreen-legend span:nth-child(2) { color: #f97316; }
-        .fullscreen-legend span:nth-child(3) { color: #10b981; }
-        @media (max-width: 960px) {
-            .glass-card { grid-template-columns: 1fr; }
-            canvas { height: 320px; }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="glass-card">
-        <div class="panel">
+      <div class="panel">
+        <div>
+          <h1>Plot Position Explorer</h1>
+          <p class="lead">
+            Visualize the chosen plot of land and verify whether the point lies
+            within other plots.
+          </p>
+        </div>
+        <div class="status-block">
+          <h2>Current focus</h2>
+          <div class="input-grid">
             <div>
-                <h1>Plot Position Explorer</h1>
-                <p class="lead">Visualize the chosen plot of land and verify whether the point lies within other plots.</p>
+              <label for="locationSelect">Plot location</label>
+              <select id="locationSelect"></select>
             </div>
-            <div class="status-block">
-                <h2>Current focus</h2>
-                <div class="input-grid">
-                    <div>
-                        <label for="locationSelect">Plot location</label>
-                        <select id="locationSelect"></select>
-                    </div>
-                    <div>
-                        <label for="latInput">Latitude (Y)</label>
-                        <input id="latInput" type="number" step="0.000001">
-                    </div>
-                    <div>
-                        <label for="longInput">Longitude (X)</label>
-                        <input id="longInput" type="number" step="0.000001">
-                    </div>
-                </div>
-                <button id="updateBtn">Evaluate Position</button>
-                <div id="positionStatus" class="status-label" style="margin-top:14px;">Awaiting evaluation...</div>
-                <ul id="plotStatus" style="margin-top: 12px;"></ul>
+            <div>
+              <label for="latInput">Latitude (Y)</label>
+              <input id="latInput" type="number" step="0.000001" />
             </div>
-            <div class="legend fullscreen-legend">
-                <span>Focused plot</span>
-                <span>Overlapping plot</span>
-                <span>Point indicator</span>
+            <div>
+              <label for="longInput">Longitude (X)</label>
+              <input id="longInput" type="number" step="0.000001" />
             </div>
+          </div>
+          <button id="updateBtn">Evaluate Position</button>
+          <div
+            id="positionStatus"
+            class="status-label"
+            style="margin-top: 14px"
+          >
+            Awaiting evaluation...
+          </div>
+          <ul id="plotStatus" style="margin-top: 12px"></ul>
         </div>
-        <div class="panel">
-            <div class="panel-title">Coordinate Canvas</div>
-            <canvas id="plotCanvas" width="640" height="440"></canvas>
+        <div class="legend fullscreen-legend">
+          <span>Focused plot</span>
+          <span>Overlapping plot</span>
+          <span>Point indicator</span>
         </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Coordinate Canvas</div>
+        <canvas id="plotCanvas" width="640" height="440"></canvas>
+      </div>
     </div>
     <script>
-        const plots = [
-            {name:"Borisova Gradina Park", S: 42.677265, W: 23.331184, N: 42.690606, E: 23.347621, color: '#38bdf8'},
-            {name:"Vasil Levski Stadium", S: 42.686344, W: 23.332922, N: 42.689106, E: 23.337278, color: '#f97316'},
-            {name:"Bulgarian Army Stadium", S: 42.683029, W: 23.338244, N: 42.685191, E: 23.341355, color: '#a855f7'},
-            {name:"Tennis Club Levski", S: 42.686102, W: 23.336007, N: 42.687132, E: 23.337734, color: '#f472b6'}
-        ];
-        const focusPoint = {location:"Park Coffee Club", lat: 42.686851, long: 23.336146};
+      const plots = [
+        {
+          name: "Borisova Gradina Park",
+          S: 42.677265,
+          W: 23.331184,
+          N: 42.690606,
+          E: 23.347621,
+          color: "#38bdf8",
+        },
+        {
+          name: "Vasil Levski Stadium",
+          S: 42.686344,
+          W: 23.332922,
+          N: 42.689106,
+          E: 23.337278,
+          color: "#f97316",
+        },
+        {
+          name: "Bulgarian Army Stadium",
+          S: 42.683029,
+          W: 23.338244,
+          N: 42.685191,
+          E: 23.341355,
+          color: "#a855f7",
+        },
+        {
+          name: "Tennis Club Levski",
+          S: 42.686102,
+          W: 23.336007,
+          N: 42.687132,
+          E: 23.337734,
+          color: "#f472b6",
+        },
+      ];
+      const focusPoint = {
+        location: "Park Coffee Club",
+        lat: 42.686851,
+        long: 23.336146,
+      };
 
-        const locationSelect = document.getElementById('locationSelect');
+      const locationSelect = document.getElementById("locationSelect");
+      for (let plot of plots) {
+        const option = document.createElement("option");
+        option.value = plot.name;
+        option.textContent = plot.name;
+        locationSelect.append(option);
+      }
+      locationSelect.value = focusPoint.location;
+
+      const latInput = document.getElementById("latInput");
+      const longInput = document.getElementById("longInput");
+      latInput.value = focusPoint.lat;
+      longInput.value = focusPoint.long;
+      const statusList = document.getElementById("plotStatus");
+      const statusLabel = document.getElementById("positionStatus");
+      const canvas = document.getElementById("plotCanvas");
+      const ctx = canvas.getContext("2d");
+      const margin = 32;
+      const latRange = {
+        min: Math.min(...plots.map((p) => p.S)) - 0.001,
+        max: Math.max(...plots.map((p) => p.N)) + 0.001,
+      };
+      const longRange = {
+        min: Math.min(...plots.map((p) => p.W)) - 0.001,
+        max: Math.max(...plots.map((p) => p.E)) + 0.001,
+      };
+
+      function printCrossingPlots(point, ...plots) {
+        const crossing = [];
         for (let plot of plots) {
-            const option = document.createElement('option');
-            option.value = plot.name;
-            option.textContent = plot.name;
-            locationSelect.append(option);
+          if (
+            point.lat >= plot.S &&
+            point.lat <= plot.N &&
+            point.long >= plot.W &&
+            point.long <= plot.E
+          ) {
+            crossing.push(plot.name);
+          }
         }
-        locationSelect.value = focusPoint.location;
+        return crossing;
+      }
 
-        const latInput = document.getElementById('latInput');
-        const longInput = document.getElementById('longInput');
-        latInput.value = focusPoint.lat;
-        longInput.value = focusPoint.long;
-        const statusList = document.getElementById('plotStatus');
-        const statusLabel = document.getElementById('positionStatus');
-        const canvas = document.getElementById('plotCanvas');
-        const ctx = canvas.getContext('2d');
-        const margin = 32;
-        const latRange = {
-            min: Math.min(...plots.map(p => p.S)) - 0.001,
-            max: Math.max(...plots.map(p => p.N)) + 0.001
+      function pointInPlot(point, plot) {
+        if (
+          point.lat > plot.S &&
+          point.lat < plot.N &&
+          point.long > plot.W &&
+          point.long < plot.E
+        ) {
+          return "inside";
+        }
+        if (
+          point.lat >= plot.S &&
+          point.lat <= plot.N &&
+          point.long >= plot.W &&
+          point.long <= plot.E
+        ) {
+          return "border";
+        }
+        return "outside";
+      }
+
+      function toCanvasX(long) {
+        const range = longRange.max - longRange.min;
+        return (
+          margin +
+          ((long - longRange.min) / range) * (canvas.width - margin * 2)
+        );
+      }
+
+      function toCanvasY(lat) {
+        const range = latRange.max - latRange.min;
+        return (
+          canvas.height -
+          margin -
+          ((lat - latRange.min) / range) * (canvas.height - margin * 2)
+        );
+      }
+
+      function drawPlots(point) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#0f172a";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // grid
+        ctx.strokeStyle = "rgba(255,255,255,0.07)";
+        ctx.lineWidth = 1;
+        const step = 20;
+        for (let i = 0; i < canvas.width; i += step) {
+          ctx.beginPath();
+          ctx.moveTo(i, 0);
+          ctx.lineTo(i, canvas.height);
+          ctx.stroke();
+        }
+        for (let i = 0; i < canvas.height; i += step) {
+          ctx.beginPath();
+          ctx.moveTo(0, i);
+          ctx.lineTo(canvas.width, i);
+          ctx.stroke();
+        }
+
+        // axes
+        ctx.strokeStyle = "rgba(255,255,255,0.3)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(margin, canvas.height - margin);
+        ctx.lineTo(canvas.width - margin, canvas.height - margin);
+        ctx.lineTo(canvas.width - margin, margin);
+        ctx.stroke();
+
+        // draw plots
+        for (let plot of plots) {
+          const x1 = toCanvasX(plot.W);
+          const y1 = toCanvasY(plot.N);
+          const x2 = toCanvasX(plot.E);
+          const y2 = toCanvasY(plot.S);
+          ctx.fillStyle = `${plot.color}33`;
+          ctx.strokeStyle = plot.color;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.rect(x1, y1, x2 - x1, y2 - y1);
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = "#fff";
+          ctx.font = "12px Inter";
+          ctx.fillText(plot.name, x1 + 6, y1 + 14);
+        }
+
+        // draw focus point
+        const pointX = toCanvasX(point.long);
+        const pointY = toCanvasY(point.lat);
+        ctx.beginPath();
+        ctx.fillStyle = "#10b981";
+        ctx.strokeStyle = "#0f172a";
+        ctx.lineWidth = 3;
+        ctx.arc(pointX, pointY, 7, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "#fff";
+        ctx.font = "bold 13px Inter";
+        ctx.fillText(point.location, pointX + 10, pointY - 10);
+      }
+
+      function evaluate() {
+        const point = {
+          location: locationSelect.value,
+          lat: parseFloat(latInput.value),
+          long: parseFloat(longInput.value),
         };
-        const longRange = {
-            min: Math.min(...plots.map(p => p.W)) - 0.001,
-            max: Math.max(...plots.map(p => p.E)) + 0.001
-        };
-
-        function printCrossingPlots(point, ...plots) {
-            const crossing = [];
-            for (let plot of plots) {
-                if (point.lat >= plot.S && point.lat <= plot.N &&
-                        point.long >= plot.W && point.long <= plot.E) {
-                    crossing.push(plot.name);
-                }
-            }
-            return crossing;
+        const results = plots.map((plot) => ({
+          name: plot.name,
+          status: pointInPlot(point, plot),
+        }));
+        const contained = printCrossingPlots(point, ...plots);
+        statusLabel.textContent = contained.length
+          ? `The point lies within ${contained.length} plot(s)`
+          : "The point is isolated";
+        statusList.innerHTML = "";
+        for (let res of results) {
+          const li = document.createElement("li");
+          li.className = `status-${res.status}`;
+          li.innerHTML =
+            `<div><span class="status-dot"></span><strong>${res.name}</strong></div>` +
+            `<span>${res.status}</span>`;
+          statusList.append(li);
         }
+        drawPlots(point);
+      }
 
-        function pointInPlot(point, plot) {
-            if (point.lat > plot.S && point.lat < plot.N && point.long > plot.W && point.long < plot.E) {
-                return 'inside';
-            }
-            if (point.lat >= plot.S && point.lat <= plot.N && point.long >= plot.W && point.long <= plot.E) {
-                return 'border';
-            }
-            return 'outside';
-        }
-
-        function toCanvasX(long) {
-            const range = longRange.max - longRange.min;
-            return margin + ((long - longRange.min) / range) * (canvas.width - margin * 2);
-        }
-
-        function toCanvasY(lat) {
-            const range = latRange.max - latRange.min;
-            return canvas.height - margin - ((lat - latRange.min) / range) * (canvas.height - margin * 2);
-        }
-
-        function drawPlots(point) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#0f172a';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // grid
-            ctx.strokeStyle = 'rgba(255,255,255,0.07)';
-            ctx.lineWidth = 1;
-            const step = 20;
-            for (let i = 0; i < canvas.width; i += step) {
-                ctx.beginPath();
-                ctx.moveTo(i, 0);
-                ctx.lineTo(i, canvas.height);
-                ctx.stroke();
-            }
-            for (let i = 0; i < canvas.height; i += step) {
-                ctx.beginPath();
-                ctx.moveTo(0, i);
-                ctx.lineTo(canvas.width, i);
-                ctx.stroke();
-            }
-
-            // axes
-            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(margin, canvas.height - margin);
-            ctx.lineTo(canvas.width - margin, canvas.height - margin);
-            ctx.lineTo(canvas.width - margin, margin);
-            ctx.stroke();
-
-            // draw plots
-            for (let plot of plots) {
-                const x1 = toCanvasX(plot.W);
-                const y1 = toCanvasY(plot.N);
-                const x2 = toCanvasX(plot.E);
-                const y2 = toCanvasY(plot.S);
-                ctx.fillStyle = `${plot.color}33`;
-                ctx.strokeStyle = plot.color;
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.rect(x1, y1, x2 - x1, y2 - y1);
-                ctx.fill();
-                ctx.stroke();
-                ctx.fillStyle = '#fff';
-                ctx.font = '12px Inter';
-                ctx.fillText(plot.name, x1 + 6, y1 + 14);
-            }
-
-            // draw focus point
-            const pointX = toCanvasX(point.long);
-            const pointY = toCanvasY(point.lat);
-            ctx.beginPath();
-            ctx.fillStyle = '#10b981';
-            ctx.strokeStyle = '#0f172a';
-            ctx.lineWidth = 3;
-            ctx.arc(pointX, pointY, 7, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.stroke();
-            ctx.fillStyle = '#fff';
-            ctx.font = 'bold 13px Inter';
-            ctx.fillText(point.location, pointX + 10, pointY - 10);
-        }
-
-        function evaluate() {
-            const point = {
-                location: locationSelect.value,
-                lat: parseFloat(latInput.value),
-                long: parseFloat(longInput.value)
-            };
-            const results = plots.map(plot => ({
-                name: plot.name,
-                status: pointInPlot(point, plot)
-            }));
-            const contained = printCrossingPlots(point, ...plots);
-            statusLabel.textContent = contained.length
-                ? `The point lies within ${contained.length} plot(s)`
-                : 'The point is isolated';
-            statusList.innerHTML = '';
-            for (let res of results) {
-                const li = document.createElement('li');
-                li.className = `status-${res.status}`;
-                li.innerHTML = `<div><span class="status-dot"></span><strong>${res.name}</strong></div>` +
-                    `<span>${res.status}</span>`;
-                statusList.append(li);
-            }
-            drawPlots(point);
-        }
-
-        document.getElementById('updateBtn').addEventListener('click', evaluate);
-        evaluate();
+      document.getElementById("updateBtn").addEventListener("click", evaluate);
+      evaluate();
     </script>
-</body>
+  </body>
 </html>

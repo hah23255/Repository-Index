@@ -1,711 +1,755 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Repository Index - hah23255</title>
-    <meta name="description" content="Comprehensive repository index for hah23255 - all projects, forks, and original repositories with status and metadata">
-    <meta name="keywords" content="repositories, github, projects, index, hah23255">
-    
+    <meta
+      name="description"
+      content="Comprehensive repository index for hah23255 - all projects, forks, and original repositories with status and metadata"
+    />
+    <meta
+      name="keywords"
+      content="repositories, github, projects, index, hah23255"
+    />
+
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --secondary-color: #64748b;
-            --background: #0f172a;
-            --surface: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --border: #334155;
-            --accent: #06b6d4;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --glass-bg: rgba(30, 41, 59, 0.8);
-            --glass-border: rgba(203, 213, 225, 0.1);
-        }
+      :root {
+        --primary-color: #2563eb;
+        --primary-hover: #1d4ed8;
+        --secondary-color: #64748b;
+        --background: #0f172a;
+        --surface: #1e293b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --border: #334155;
+        --accent: #06b6d4;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --glass-bg: rgba(30, 41, 59, 0.8);
+        --glass-border: rgba(203, 213, 225, 0.1);
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: var(--text-primary);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
 
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--accent)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+
+      .header p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .stat {
+        background: var(--surface);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border);
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+
+      .stat-label {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        margin-top: 0.25rem;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .search-box {
+        flex: 1;
+        max-width: 400px;
+        position: relative;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 0.75rem 2.5rem 0.75rem 1rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      .search-box::after {
+        content: "🔍";
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .filters {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.375rem;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: white;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .nav-link {
+        padding: 0.75rem 1.5rem;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 0.5rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-link:hover {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+      }
+
+      .repo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .repo-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .repo-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        border-color: var(--primary-color);
+      }
+
+      .repo-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent));
+      }
+
+      .repo-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .repo-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        flex: 1;
+        margin-right: 1rem;
+      }
+
+      .repo-name:hover {
+        color: var(--primary-color);
+      }
+
+      .repo-badges {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .badge {
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      .badge.fork {
+        background: var(--warning);
+        color: white;
+      }
+
+      .badge.original {
+        background: var(--success);
+        color: white;
+      }
+
+      .badge.private {
+        background: var(--error);
+        color: white;
+      }
+
+      .repo-description {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .repo-metadata {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .metadata-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+
+      .metadata-item .icon {
+        font-size: 1rem;
+      }
+
+      .repo-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .last-updated {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+
+      .parent-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      .parent-link:hover {
+        text-decoration: underline;
+      }
+
+      .language-tag {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .loading {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-secondary);
+      }
+
+      .spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid var(--border);
+        border-radius: 50%;
+        border-top-color: var(--primary-color);
+        animation: spin 1s ease-in-out infinite;
+        margin-right: 0.5rem;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 3rem;
+        color: var(--text-secondary);
+      }
+
+      .no-results h3 {
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      @media (max-width: 768px) {
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            backdrop-filter: blur(10px);
+          padding: 1rem;
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .header p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .stat {
-            background: var(--surface);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .search-box {
-            flex: 1;
-            max-width: 400px;
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 0.75rem 2.5rem 0.75rem 1rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .search-box::after {
-            content: '🔍';
-            position: absolute;
-            right: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-
-        .filters {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 0.375rem;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            user-select: none;
-        }
-
-        .filter-btn.active,
-        .filter-btn:hover {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            color: white;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .nav-link {
-            padding: 0.75rem 1.5rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 0.5rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-link:hover {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
+          font-size: 2rem;
         }
 
         .repo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 1.5rem;
+          grid-template-columns: 1fr;
         }
 
-        .repo-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        .controls {
+          flex-direction: column;
+          align-items: stretch;
         }
 
-        .repo-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            border-color: var(--primary-color);
+        .search-box {
+          max-width: none;
         }
-
-        .repo-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent));
-        }
-
-        .repo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .repo-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            flex: 1;
-            margin-right: 1rem;
-        }
-
-        .repo-name:hover {
-            color: var(--primary-color);
-        }
-
-        .repo-badges {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
-        }
-
-        .badge.fork {
-            background: var(--warning);
-            color: white;
-        }
-
-        .badge.original {
-            background: var(--success);
-            color: white;
-        }
-
-        .badge.private {
-            background: var(--error);
-            color: white;
-        }
-
-        .repo-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .repo-metadata {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .metadata-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .metadata-item .icon {
-            font-size: 1rem;
-        }
-
-        .repo-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .last-updated {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .parent-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .parent-link:hover {
-            text-decoration: underline;
-        }
-
-        .language-tag {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
-        }
-
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid var(--border);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 0.5rem;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-secondary);
-        }
-
-        .no-results h3 {
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .repo-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-box {
-                max-width: none;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header class="header">
-            <h1>Repository Index</h1>
-            <p>Comprehensive overview of all repositories - original projects and forks</p>
-            <div class="stats" id="stats">
-                <div class="stat">
-                    <div class="stat-value" id="totalRepos">-</div>
-                    <div class="stat-label">Total Repositories</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="originalRepos">-</div>
-                    <div class="stat-label">Original Projects</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="forkedRepos">-</div>
-                    <div class="stat-label">Forked Projects</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="totalStars">-</div>
-                    <div class="stat-label">Total Stars</div>
-                </div>
-            </div>
-        </header>
+      <header class="header">
+        <h1>Repository Index</h1>
+        <p>
+          Comprehensive overview of all repositories - original projects and
+          forks
+        </p>
+        <div class="stats" id="stats">
+          <div class="stat">
+            <div class="stat-value" id="totalRepos">-</div>
+            <div class="stat-label">Total Repositories</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="originalRepos">-</div>
+            <div class="stat-label">Original Projects</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="forkedRepos">-</div>
+            <div class="stat-label">Forked Projects</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" id="totalStars">-</div>
+            <div class="stat-label">Total Stars</div>
+          </div>
+        </div>
+      </header>
 
-        <nav class="nav-links">
-            <a href="index.html" class="nav-link">Repository Index</a>
-            <a href="javascript-demos.html" class="nav-link">JavaScript Demos</a>
-        </nav>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Repository Index</a>
+        <a href="javascript-demos.html" class="nav-link">JavaScript Demos</a>
+      </nav>
 
-        <div class="controls">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search repositories...">
-            </div>
-            
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="original">Original</button>
-                <button class="filter-btn" data-filter="fork">Forks</button>
-                <button class="filter-btn" data-filter="private">Private</button>
-                <button class="filter-btn" data-filter="public">Public</button>
-            </div>
+      <div class="controls">
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search repositories..."
+          />
         </div>
 
-        <div class="loading" id="loading">
-            <span class="spinner"></span>
-            Loading repositories...
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="original">Original</button>
+          <button class="filter-btn" data-filter="fork">Forks</button>
+          <button class="filter-btn" data-filter="private">Private</button>
+          <button class="filter-btn" data-filter="public">Public</button>
         </div>
+      </div>
 
-        <div class="repo-grid" id="repoGrid" style="display: none;"></div>
+      <div class="loading" id="loading">
+        <span class="spinner"></span>
+        Loading repositories...
+      </div>
 
-        <div class="no-results" id="noResults" style="display: none;">
-            <h3>No repositories found</h3>
-            <p>Try adjusting your search or filter criteria.</p>
-        </div>
+      <div class="repo-grid" id="repoGrid" style="display: none"></div>
+
+      <div class="no-results" id="noResults" style="display: none">
+        <h3>No repositories found</h3>
+        <p>Try adjusting your search or filter criteria.</p>
+      </div>
     </div>
 
     <script>
-        // Repository data - will be populated from GitHub API
-        let repositories = [];
-        let filteredRepositories = [];
+      // Repository data - will be populated from GitHub API
+      let repositories = [];
+      let filteredRepositories = [];
 
-        // Language icons mapping
-        const languageIcons = {
-            'JavaScript': '🟨',
-            'TypeScript': '🔷',
-            'Python': '🐍',
-            'HTML': '🌐',
-            'CSS': '🎨',
-            'Shell': '💻',
-            'Dart': '🎯',
-            'Java': '☕',
-            'C++': '⚡',
-            'Rust': '🦀',
-            'Go': '🐹',
-            'PHP': '🐘'
-        };
+      // Language icons mapping
+      const languageIcons = {
+        JavaScript: "🟨",
+        TypeScript: "🔷",
+        Python: "🐍",
+        HTML: "🌐",
+        CSS: "🎨",
+        Shell: "💻",
+        Dart: "🎯",
+        Java: "☕",
+        "C++": "⚡",
+        Rust: "🦀",
+        Go: "🐹",
+        PHP: "🐘",
+      };
 
-        // Sample data structure (will be replaced with actual GitHub API data)
-        const sampleRepositories = [
+      // Sample data structure (will be replaced with actual GitHub API data)
+      const sampleRepositories = [
+        {
+          name: "libsql",
+          description:
+            "libSQL is a fork of SQLite that is both Open Source, and Open Contributions.",
+          fork: true,
+          private: false,
+          language: null,
+          stargazers_count: 0,
+          forks_count: 0,
+          updated_at: "2025-11-12T06:15:40Z",
+          html_url: "https://github.com/hah23255/libsql",
+          parent: "https://github.com/tursodatabase/libsql",
+        },
+        {
+          name: "Repository-Index",
+          description:
+            "📚 Educational JavaScript examples with interactive HTML5 visualizations, modern tooling setup, and professional CI/CD pipeline",
+          fork: false,
+          private: false,
+          language: "HTML",
+          stargazers_count: 0,
+          forks_count: 0,
+          updated_at: "2025-11-18T09:29:08Z",
+          html_url: "https://github.com/hah23255/Repository-Index",
+          parent: null,
+        },
+        {
+          name: "loan-calculator-v2",
+          description:
+            "Modern loan calculator web app v2 with Tailwind CSS for Gen Z audience",
+          fork: false,
+          private: false,
+          language: "JavaScript",
+          stargazers_count: 0,
+          forks_count: 0,
+          updated_at: "2025-11-12T07:01:18Z",
+          html_url: "https://github.com/hah23255/loan-calculator-v2",
+          parent: null,
+        },
+      ];
+
+      // Initialize the application
+      async function init() {
+        await loadRepositories();
+        setupEventListeners();
+        renderRepositories();
+        updateStats();
+      }
+
+      // Load repositories (in a real implementation, this would fetch from GitHub API)
+      async function loadRepositories() {
+        try {
+          // Simulate API loading
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
+          // In a real implementation, you would fetch from GitHub API
+          // repositories = await fetchFromGitHubAPI();
+
+          // For now, use extended sample data
+          repositories = [
             {
-                name: "libsql",
-                description: "libSQL is a fork of SQLite that is both Open Source, and Open Contributions.",
-                fork: true,
-                private: false,
-                language: null,
-                stargazers_count: 0,
-                forks_count: 0,
-                updated_at: "2025-11-12T06:15:40Z",
-                html_url: "https://github.com/hah23255/libsql",
-                parent: "https://github.com/tursodatabase/libsql"
+              name: "libsql",
+              description:
+                "libSQL is a fork of SQLite that is both Open Source, and Open Contributions.",
+              fork: true,
+              private: false,
+              language: null,
+              stargazers_count: 0,
+              forks_count: 0,
+              updated_at: "2025-11-12T06:15:40Z",
+              html_url: "https://github.com/hah23255/libsql",
+              parent: "https://github.com/tursodatabase/libsql",
             },
             {
-                name: "Repository-Index",
-                description: "📚 Educational JavaScript examples with interactive HTML5 visualizations, modern tooling setup, and professional CI/CD pipeline",
-                fork: false,
-                private: false,
-                language: "HTML",
-                stargazers_count: 0,
-                forks_count: 0,
-                updated_at: "2025-11-18T09:29:08Z",
-                html_url: "https://github.com/hah23255/Repository-Index",
-                parent: null
+              name: "Repository-Index",
+              description:
+                "📚 Educational JavaScript examples with interactive HTML5 visualizations, modern tooling setup, and professional CI/CD pipeline",
+              fork: false,
+              private: false,
+              language: "HTML",
+              stargazers_count: 0,
+              forks_count: 0,
+              updated_at: "2025-11-18T09:29:08Z",
+              html_url: "https://github.com/hah23255/Repository-Index",
+              parent: null,
             },
             {
-                name: "loan-calculator-v2",
-                description: "Modern loan calculator web app v2 with Tailwind CSS for Gen Z audience",
-                fork: false,
-                private: false,
-                language: "JavaScript",
-                stargazers_count: 0,
-                forks_count: 0,
-                updated_at: "2025-11-12T07:01:18Z",
-                html_url: "https://github.com/hah23255/loan-calculator-v2",
-                parent: null
-            }
-        ];
+              name: "loan-calculator-v2",
+              description:
+                "Modern loan calculator web app v2 with Tailwind CSS for Gen Z audience",
+              fork: false,
+              private: false,
+              language: "JavaScript",
+              stargazers_count: 0,
+              forks_count: 0,
+              updated_at: "2025-11-12T07:01:18Z",
+              html_url: "https://github.com/hah23255/loan-calculator-v2",
+              parent: null,
+            },
+            {
+              name: "marklite",
+              description:
+                "Lightweight Markdown Viewer/Editor for Linux (mirrored from GitLab)",
+              fork: false,
+              private: false,
+              language: "Dart",
+              stargazers_count: 0,
+              forks_count: 0,
+              updated_at: "2025-11-12T11:19:17Z",
+              html_url: "https://github.com/hah23255/marklite",
+              parent: null,
+            },
+            {
+              name: "LoadForge",
+              description:
+                "Enterprise Load Testing Platform - 100% Test Coverage, ISO 26262 ASIL-D Compliant",
+              fork: false,
+              private: true,
+              language: null,
+              stargazers_count: 0,
+              forks_count: 0,
+              updated_at: "2025-11-12T09:56:08Z",
+              html_url: "https://github.com/hah23255/LoadForge",
+              parent: null,
+            },
+            {
+              name: "mcp-context-forge",
+              description:
+                "A Model Context Protocol (MCP) Gateway. Serves as a central management point for tools, resources, and prompts that can be accessed by MCP-compatible LLM applications.",
+              fork: true,
+              private: false,
+              language: null,
+              stargazers_count: 1,
+              forks_count: 0,
+              updated_at: "2025-11-12T10:48:58Z",
+              html_url: "https://github.com/hah23255/mcp-context-forge",
+              parent: "https://github.com/modelcontextprotocol/context-forge",
+            },
+          ];
 
-        // Initialize the application
-        async function init() {
-            await loadRepositories();
-            setupEventListeners();
-            renderRepositories();
-            updateStats();
+          filteredRepositories = [...repositories];
+        } catch (error) {
+          console.error("Error loading repositories:", error);
+          repositories = sampleRepositories;
+          filteredRepositories = [...repositories];
+        }
+      }
+
+      // Setup event listeners
+      function setupEventListeners() {
+        const searchInput = document.getElementById("searchInput");
+        const filterBtns = document.querySelectorAll(".filter-btn");
+
+        searchInput.addEventListener("input", handleSearch);
+
+        filterBtns.forEach((btn) => {
+          btn.addEventListener("click", handleFilter);
+        });
+      }
+
+      // Handle search
+      function handleSearch(event) {
+        const query = event.target.value.toLowerCase().trim();
+        applyFilters(query);
+      }
+
+      // Handle filter
+      function handleFilter(event) {
+        // Update active filter button
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        event.target.classList.add("active");
+
+        const searchQuery = document
+          .getElementById("searchInput")
+          .value.toLowerCase()
+          .trim();
+        applyFilters(searchQuery);
+      }
+
+      // Apply filters and search
+      function applyFilters(searchQuery = "") {
+        const activeFilter =
+          document.querySelector(".filter-btn.active").dataset.filter;
+
+        filteredRepositories = repositories.filter((repo) => {
+          // Text search filter
+          const matchesSearch =
+            !searchQuery ||
+            repo.name.toLowerCase().includes(searchQuery) ||
+            (repo.description &&
+              repo.description.toLowerCase().includes(searchQuery)) ||
+            (repo.language &&
+              repo.language.toLowerCase().includes(searchQuery));
+
+          // Category filter
+          let matchesFilter = true;
+          switch (activeFilter) {
+            case "original":
+              matchesFilter = !repo.fork;
+              break;
+            case "fork":
+              matchesFilter = repo.fork;
+              break;
+            case "private":
+              matchesFilter = repo.private;
+              break;
+            case "public":
+              matchesFilter = !repo.private;
+              break;
+            case "all":
+            default:
+              matchesFilter = true;
+          }
+
+          return matchesSearch && matchesFilter;
+        });
+
+        renderRepositories();
+      }
+
+      // Render repositories
+      function renderRepositories() {
+        const repoGrid = document.getElementById("repoGrid");
+        const loading = document.getElementById("loading");
+        const noResults = document.getElementById("noResults");
+
+        loading.style.display = "none";
+        repoGrid.style.display = "grid";
+
+        if (filteredRepositories.length === 0) {
+          repoGrid.style.display = "none";
+          noResults.style.display = "block";
+          return;
         }
 
-        // Load repositories (in a real implementation, this would fetch from GitHub API)
-        async function loadRepositories() {
-            try {
-                // Simulate API loading
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                // In a real implementation, you would fetch from GitHub API
-                // repositories = await fetchFromGitHubAPI();
-                
-                // For now, use extended sample data
-                repositories = [
-                    {
-                        name: "libsql",
-                        description: "libSQL is a fork of SQLite that is both Open Source, and Open Contributions.",
-                        fork: true,
-                        private: false,
-                        language: null,
-                        stargazers_count: 0,
-                        forks_count: 0,
-                        updated_at: "2025-11-12T06:15:40Z",
-                        html_url: "https://github.com/hah23255/libsql",
-                        parent: "https://github.com/tursodatabase/libsql"
-                    },
-                    {
-                        name: "Repository-Index",
-                        description: "📚 Educational JavaScript examples with interactive HTML5 visualizations, modern tooling setup, and professional CI/CD pipeline",
-                        fork: false,
-                        private: false,
-                        language: "HTML",
-                        stargazers_count: 0,
-                        forks_count: 0,
-                        updated_at: "2025-11-18T09:29:08Z",
-                        html_url: "https://github.com/hah23255/Repository-Index",
-                        parent: null
-                    },
-                    {
-                        name: "loan-calculator-v2",
-                        description: "Modern loan calculator web app v2 with Tailwind CSS for Gen Z audience",
-                        fork: false,
-                        private: false,
-                        language: "JavaScript",
-                        stargazers_count: 0,
-                        forks_count: 0,
-                        updated_at: "2025-11-12T07:01:18Z",
-                        html_url: "https://github.com/hah23255/loan-calculator-v2",
-                        parent: null
-                    },
-                    {
-                        name: "marklite",
-                        description: "Lightweight Markdown Viewer/Editor for Linux (mirrored from GitLab)",
-                        fork: false,
-                        private: false,
-                        language: "Dart",
-                        stargazers_count: 0,
-                        forks_count: 0,
-                        updated_at: "2025-11-12T11:19:17Z",
-                        html_url: "https://github.com/hah23255/marklite",
-                        parent: null
-                    },
-                    {
-                        name: "LoadForge",
-                        description: "Enterprise Load Testing Platform - 100% Test Coverage, ISO 26262 ASIL-D Compliant",
-                        fork: false,
-                        private: true,
-                        language: null,
-                        stargazers_count: 0,
-                        forks_count: 0,
-                        updated_at: "2025-11-12T09:56:08Z",
-                        html_url: "https://github.com/hah23255/LoadForge",
-                        parent: null
-                    },
-                    {
-                        name: "mcp-context-forge",
-                        description: "A Model Context Protocol (MCP) Gateway. Serves as a central management point for tools, resources, and prompts that can be accessed by MCP-compatible LLM applications.",
-                        fork: true,
-                        private: false,
-                        language: null,
-                        stargazers_count: 1,
-                        forks_count: 0,
-                        updated_at: "2025-11-12T10:48:58Z",
-                        html_url: "https://github.com/hah23255/mcp-context-forge",
-                        parent: "https://github.com/modelcontextprotocol/context-forge"
-                    }
-                ];
+        noResults.style.display = "none";
 
-                filteredRepositories = [...repositories];
-                
-            } catch (error) {
-                console.error('Error loading repositories:', error);
-                repositories = sampleRepositories;
-                filteredRepositories = [...repositories];
-            }
-        }
+        repoGrid.innerHTML = filteredRepositories
+          .map((repo) => createRepoCard(repo))
+          .join("");
+      }
 
-        // Setup event listeners
-        function setupEventListeners() {
-            const searchInput = document.getElementById('searchInput');
-            const filterBtns = document.querySelectorAll('.filter-btn');
+      // Create repository card HTML
+      function createRepoCard(repo) {
+        const lastUpdated = new Date(repo.updated_at).toLocaleDateString();
+        const languageIcon = repo.language
+          ? languageIcons[repo.language] || "📄"
+          : "📄";
+        const parentLink = repo.parent
+          ? `<a href="${repo.parent}" class="parent-link" target="_blank" rel="noopener">Fork from ${getRepoOwnerFromUrl(repo.parent)}</a>`
+          : "";
 
-            searchInput.addEventListener('input', handleSearch);
-            
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', handleFilter);
-            });
-        }
-
-        // Handle search
-        function handleSearch(event) {
-            const query = event.target.value.toLowerCase().trim();
-            applyFilters(query);
-        }
-
-        // Handle filter
-        function handleFilter(event) {
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            const searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
-            applyFilters(searchQuery);
-        }
-
-        // Apply filters and search
-        function applyFilters(searchQuery = '') {
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-            
-            filteredRepositories = repositories.filter(repo => {
-                // Text search filter
-                const matchesSearch = !searchQuery || 
-                    repo.name.toLowerCase().includes(searchQuery) ||
-                    (repo.description && repo.description.toLowerCase().includes(searchQuery)) ||
-                    (repo.language && repo.language.toLowerCase().includes(searchQuery));
-
-                // Category filter
-                let matchesFilter = true;
-                switch (activeFilter) {
-                    case 'original':
-                        matchesFilter = !repo.fork;
-                        break;
-                    case 'fork':
-                        matchesFilter = repo.fork;
-                        break;
-                    case 'private':
-                        matchesFilter = repo.private;
-                        break;
-                    case 'public':
-                        matchesFilter = !repo.private;
-                        break;
-                    case 'all':
-                    default:
-                        matchesFilter = true;
-                }
-
-                return matchesSearch && matchesFilter;
-            });
-
-            renderRepositories();
-        }
-
-        // Render repositories
-        function renderRepositories() {
-            const repoGrid = document.getElementById('repoGrid');
-            const loading = document.getElementById('loading');
-            const noResults = document.getElementById('noResults');
-
-            loading.style.display = 'none';
-            repoGrid.style.display = 'grid';
-
-            if (filteredRepositories.length === 0) {
-                repoGrid.style.display = 'none';
-                noResults.style.display = 'block';
-                return;
-            }
-
-            noResults.style.display = 'none';
-
-            repoGrid.innerHTML = filteredRepositories.map(repo => createRepoCard(repo)).join('');
-        }
-
-        // Create repository card HTML
-        function createRepoCard(repo) {
-            const lastUpdated = new Date(repo.updated_at).toLocaleDateString();
-            const languageIcon = repo.language ? languageIcons[repo.language] || '📄' : '📄';
-            const parentLink = repo.parent ? 
-                `<a href="${repo.parent}" class="parent-link" target="_blank" rel="noopener">Fork from ${getRepoOwnerFromUrl(repo.parent)}</a>` : 
-                '';
-
-            return `
+        return `
                 <div class="repo-card">
                     <div class="repo-header">
                         <a href="${repo.html_url}" class="repo-name" target="_blank" rel="noopener">
@@ -713,7 +757,7 @@
                         </a>
                         <div class="repo-badges">
                             ${repo.fork ? '<span class="badge fork">Fork</span>' : '<span class="badge original">Original</span>'}
-                            ${repo.private ? '<span class="badge private">Private</span>' : ''}
+                            ${repo.private ? '<span class="badge private">Private</span>' : ""}
                         </div>
                     </div>
                     
@@ -728,11 +772,15 @@
                             <span class="icon">🍴</span>
                             <span>${repo.forks_count}</span>
                         </div>
-                        ${repo.language ? `
+                        ${
+                          repo.language
+                            ? `
                         <div class="metadata-item">
                             <span class="icon">${languageIcon}</span>
                             <span class="language-tag">${repo.language}</span>
-                        </div>` : ''}
+                        </div>`
+                            : ""
+                        }
                     </div>
                     
                     <div class="repo-footer">
@@ -741,33 +789,36 @@
                     </div>
                 </div>
             `;
+      }
+
+      // Extract repository owner from URL
+      function getRepoOwnerFromUrl(url) {
+        try {
+          const parts = url.split("/");
+          return parts[parts.length - 2];
+        } catch {
+          return "unknown";
         }
+      }
 
-        // Extract repository owner from URL
-        function getRepoOwnerFromUrl(url) {
-            try {
-                const parts = url.split('/');
-                return parts[parts.length - 2];
-            } catch {
-                return 'unknown';
-            }
-        }
+      // Update statistics
+      function updateStats() {
+        const totalRepos = repositories.length;
+        const originalRepos = repositories.filter((repo) => !repo.fork).length;
+        const forkedRepos = repositories.filter((repo) => repo.fork).length;
+        const totalStars = repositories.reduce(
+          (sum, repo) => sum + repo.stargazers_count,
+          0,
+        );
 
-        // Update statistics
-        function updateStats() {
-            const totalRepos = repositories.length;
-            const originalRepos = repositories.filter(repo => !repo.fork).length;
-            const forkedRepos = repositories.filter(repo => repo.fork).length;
-            const totalStars = repositories.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+        document.getElementById("totalRepos").textContent = totalRepos;
+        document.getElementById("originalRepos").textContent = originalRepos;
+        document.getElementById("forkedRepos").textContent = forkedRepos;
+        document.getElementById("totalStars").textContent = totalStars;
+      }
 
-            document.getElementById('totalRepos').textContent = totalRepos;
-            document.getElementById('originalRepos').textContent = originalRepos;
-            document.getElementById('forkedRepos').textContent = forkedRepos;
-            document.getElementById('totalStars').textContent = totalStars;
-        }
-
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', init);
+      // Initialize when DOM is loaded
+      document.addEventListener("DOMContentLoaded", init);
     </script>
-</body>
+  </body>
 </html>

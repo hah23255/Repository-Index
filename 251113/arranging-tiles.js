@@ -19,22 +19,26 @@
 // arrangement info for given floor size and tile size
 
 function arrangeTiles(floorWidth, floorHeight, tileWidth, tileHeight) {
-    const horizontalCols = Math.ceil(floorWidth / tileWidth);
-    const horizontalRows = Math.ceil(floorHeight / tileHeight);
-    const horizontalTiles = horizontalCols * horizontalRows;
+  const horizontalCols = Math.ceil(floorWidth / tileWidth);
+  const horizontalRows = Math.ceil(floorHeight / tileHeight);
+  const horizontalTiles = horizontalCols * horizontalRows;
 
-    const verticalCols = Math.ceil(floorWidth / tileHeight);
-    const verticalRows = Math.ceil(floorHeight / tileWidth);
-    const verticalTiles = verticalCols * verticalRows;
+  const verticalCols = Math.ceil(floorWidth / tileHeight);
+  const verticalRows = Math.ceil(floorHeight / tileWidth);
+  const verticalTiles = verticalCols * verticalRows;
 
-    const optimal = horizontalTiles <= verticalTiles ? 'horizontal' : 'vertical';
-    const optimalCount = Math.min(horizontalTiles, verticalTiles);
+  const optimal = horizontalTiles <= verticalTiles ? "horizontal" : "vertical";
+  const optimalCount = Math.min(horizontalTiles, verticalTiles);
 
-    console.log(`Optimal arrangement is ${optimal}: ${optimalCount} tiles`);
-    console.log(`Horizontal: ${horizontalTiles} tiles (${horizontalRows} rows x ${horizontalCols} cols)`);
-    console.log(`Vertical: ${verticalTiles} tiles (${verticalRows} rows x ${verticalCols} cols)`);
+  console.log(`Optimal arrangement is ${optimal}: ${optimalCount} tiles`);
+  console.log(
+    `Horizontal: ${horizontalTiles} tiles (${horizontalRows} rows x ${horizontalCols} cols)`,
+  );
+  console.log(
+    `Vertical: ${verticalTiles} tiles (${verticalRows} rows x ${verticalCols} cols)`,
+  );
 
-    return optimalCount;
+  return optimalCount;
 }
 
 // Example usage:
