@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point in Rectangle Visualizer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #999 0%, #666 100%);
+        }
+
+        #map {
+            width: 100%;
+            height: 360px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .result {
+            background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+            border: 2px solid #e0e7ff;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .result-label {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .result-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .result-value.inside {
+            color: #10b981;
+        }
+
+        .result-value.outside {
+            color: #ef4444;
+        }
+
+        .result-value.border {
+            color: #f59e0b;
+        }
+
+        .coordinates-display {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .coord-line {
+            margin: 5px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        #plotStatus {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        #plotStatus li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e0e7ff;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: inline-flex;
+        }
+
+        .status-inside .status-dot {
+            background: #10b981;
+        }
+
+        .status-border .status-dot {
+            background: #f97316;
+        }
+
+        .status-outside .status-dot {
+            background: #ef4444;
+        }
+
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 Point in Rectangle Visualizer</h1>
+
+        <div class="content">
+            <div class="panel">
+                <div class="panel-title">Rectangle Coordinates</div>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label>North (Lat)</label>
+                        <input type="number" id="top" value="42.690606" step="0.000001">
+                    </div>
+                    <div class="input-field">
+                        <label>West (Lng)</label>
+                        <input type="number" id="left" value="23.331184" step="0.000001">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label>South (Lat)</label>
+                        <input type="number" id="bottom" value="42.677265" step="0.000001">
+                    </div>
+                    <div class="input-field">
+                        <label>East (Lng)</label>
+                        <input type="number" id="right" value="23.347621" step="0.000001">
+                    </div>
+                </div>
+
+                <div class="panel-title" style="margin-top: 30px;">Point Coordinates</div>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label>Latitude</label>
+                        <input type="number" id="pointX" value="42.686851" step="0.000001">
+                    </div>
+                    <div class="input-field">
+                        <label>Longitude</label>
+                        <input type="number" id="pointY" value="23.336146" step="0.000001">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="evaluateBtn">Evaluate Position</button>
+                    <button id="resetBtn" class="reset-btn" type="button">Reset</button>
+                </div>
+                <div id="positionStatus" class="result-label" style="margin-top: 12px;">Awaiting evaluation...</div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">Interactive Map</div>
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <div class="result">
+            <div class="result-label">Point Position</div>
+            <div id="resultValue" class="result-value">--</div>
+            <div class="coordinates-display">
+                <div class="coord-line">Rectangle: <span id="rectCoords"></span></div>
+                <div class="coord-line">Point: <span id="pointCoords"></span></div>
+            </div>
+            <ul id="plotStatus" style="margin-top: 15px;"></ul>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        const plots = [
+            {name: "Borisova Gradina Park", S: 42.677265, W: 23.331184, N: 42.690606, E: 23.347621, color: '#38bdf8'},
+            {name: "Vasil Levski Stadium", S: 42.686344, W: 23.332922, N: 42.689106, E: 23.337278, color: '#f97316'},
+            {name: "Bulgarian Army Stadium", S: 42.683029, W: 23.338244, N: 42.685191, E: 23.341355, color: '#a855f7'},
+            {name: "Tennis Club Levski", S: 42.686102, W: 23.336007, N: 42.687132, E: 23.337734, color: '#ec4899'}
+        ];
+
+        const map = L.map('map').setView([42.687, 23.336], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        const plotRectangles = plots.map(plot => {
+            return L.rectangle([
+                [plot.S, plot.W],
+                [plot.N, plot.E]
+            ], {
+                color: plot.color,
+                weight: 2,
+                fillColor: plot.color,
+                fillOpacity: 0.15
+            }).addTo(map);
+        });
+
+        const focusMarker = L.circleMarker([42.686851, 23.336146], {
+            radius: 8,
+            fillColor: '#10b981',
+            color: '#fff',
+            weight: 2,
+            fillOpacity: 1
+        }).addTo(map);
+
+        let focusRectangle = L.rectangle([
+            [42.6906, 23.3312],
+            [42.6772, 23.3476]
+        ], {
+            color: '#2563eb',
+            weight: 3,
+            dashArray: '6,4'
+        }).addTo(map);
+
+        function pointOnRect(top, left, bottom, right, x, y) {
+            if (x > left && x < right && y > top && y < bottom) {
+                return 'inside';
+            } else if (x < left || x > right || y < top || y > bottom) {
+                return 'outside';
+            } else {
+                return 'border';
+            }
+        }
+
+        function printCrossingPlots(point, ...plots) {
+            const names = [];
+            for (let plot of plots) {
+                if (point.lat >= plot.S && point.lat <= plot.N && point.long >= plot.W && point.long <= plot.E) {
+                    names.push(plot.name);
+                }
+            }
+            return names;
+        }
+
+        function updateVisualization() {
+            const n = parseFloat(document.getElementById('top').value);
+            const w = parseFloat(document.getElementById('left').value);
+            const s = parseFloat(document.getElementById('bottom').value);
+            const e = parseFloat(document.getElementById('right').value);
+            const pointLat = parseFloat(document.getElementById('pointX').value);
+            const pointLong = parseFloat(document.getElementById('pointY').value);
+
+            if ([n, w, s, e, pointLat, pointLong].some(v => isNaN(v))) {
+                alert('Please enter valid numbers for all fields.');
+                return;
+            }
+
+            const result = pointOnRect(n, w, s, e, pointLong, pointLat);
+
+            const resultValue = document.getElementById('resultValue');
+            resultValue.textContent = result.toUpperCase();
+            resultValue.className = `result-value ${result}`;
+
+            document.getElementById('rectCoords').textContent = `North: ${n}, West: ${w}, South: ${s}, East: ${e}`;
+            document.getElementById('pointCoords').textContent = `Lat: ${pointLat}, Long: ${pointLong}`;
+
+            focusMarker.setLatLng([pointLat, pointLong]);
+            focusRectangle.setBounds([
+                [s, w],
+                [n, e]
+            ]);
+            map.fitBounds([
+                [s, w],
+                [n, e],
+                [pointLat, pointLong]
+            ], {padding: [30, 30], maxZoom: 17});
+
+            const crossings = printCrossingPlots({lat: pointLat, long: pointLong}, ...plots);
+            const statusList = document.getElementById('plotStatus');
+            statusList.innerHTML = '';
+            plots.forEach(plot => {
+                const statusItem = document.createElement('li');
+                const plotStatus = pointOnRect(plot.N, plot.W, plot.S, plot.E, pointLong, pointLat);
+                statusItem.className = `status-${plotStatus}`;
+                statusItem.innerHTML = `<div style="display:flex;align-items:center;gap:6px"><span class="status-dot"></span><strong>${plot.name}</strong></div><span>${plotStatus}</span>`;
+                statusList.appendChild(statusItem);
+            });
+            if (crossings.length) {
+                document.getElementById('positionStatus').textContent = `Inside ${crossings.length} known plot(s)`;
+            } else {
+                document.getElementById('positionStatus').textContent = 'The point is outside the known plots';
+            }
+        }
+
+        document.getElementById('evaluateBtn').addEventListener('click', updateVisualization);
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            resetValues();
+            updateVisualization();
+        });
+
+        function resetValues() {
+            document.getElementById('top').value = 42.690606;
+            document.getElementById('left').value = 23.331184;
+            document.getElementById('bottom').value = 42.677265;
+            document.getElementById('right').value = 23.347621;
+            document.getElementById('pointX').value = 42.686851;
+            document.getElementById('pointY').value = 23.336146;
+
+            document.getElementById('resultValue').textContent = '--';
+            document.getElementById('resultValue').className = 'result-value';
+            document.getElementById('rectCoords').textContent = '--';
+            document.getElementById('pointCoords').textContent = '--';
+            document.getElementById('plotStatus').innerHTML = '';
+            document.getElementById('positionStatus').textContent = 'Awaiting evaluation...';
+        }
+
+        resetValues();
+        updateVisualization();
+    </script>
+</body>
+</html>

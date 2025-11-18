@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Table Visualizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        select {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #7c3aed;
+        }
+
+        .search-button {
+            grid-column: 1 / -1;
+            padding: 14px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .search-button:active {
+            transform: translateY(0);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+            border: 2px solid #e0e7ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .result-label {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .price-display {
+            font-size: 42px;
+            font-weight: 700;
+            color: #7c3aed;
+            transition: all 0.3s ease;
+        }
+
+        .price-display.found {
+            color: #059669;
+        }
+
+        .currency {
+            font-size: 24px;
+        }
+
+        .not-found {
+            color: #dc2626;
+            font-size: 18px;
+        }
+
+        .pricing-table {
+            overflow-x: auto;
+            margin-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        th {
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 15px;
+        }
+
+        tbody tr {
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: #f5f3ff;
+        }
+
+        tbody tr:nth-child(odd) {
+            background: #f9f5ff;
+        }
+
+        tbody tr:nth-child(even) {
+            background: white;
+        }
+
+        .location-cell {
+            font-weight: 600;
+            color: #1e3a8a;
+            min-width: 100px;
+        }
+
+        .price-cell {
+            color: #7c3aed;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .legend {
+            background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+            border: 2px dashed #c7d2fe;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .legend-title {
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .color-sofia {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .color-plovdiv {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+        }
+
+        .color-varna {
+            background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .price-display {
+                font-size: 32px;
+            }
+
+            th, td {
+                padding: 12px;
+                font-size: 13px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Pricing Table</h1>
+        <p class="subtitle">Query prices by location and product</p>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="locationSelect">Select Location:</label>
+                <select id="locationSelect">
+                    <option value="">-- Choose Location --</option>
+                    <option value="Sofia">Sofia</option>
+                    <option value="Plovdiv">Plovdiv</option>
+                    <option value="Varna">Varna</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="productSelect">Select Product:</label>
+                <select id="productSelect">
+                    <option value="">-- Choose Product --</option>
+                    <option value="coffee">Coffee</option>
+                    <option value="water">Water</option>
+                    <option value="sweets">Sweets</option>
+                    <option value="peanuts">Peanuts</option>
+                </select>
+            </div>
+            <button class="search-button" onclick="searchPrice()">Get Price</button>
+        </div>
+
+        <div class="result-box">
+            <div class="result-label">Current Price</div>
+            <div id="priceResult" class="price-display">
+                <span class="currency">€</span> --
+            </div>
+        </div>
+
+        <div class="pricing-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Coffee</th>
+                        <th>Water</th>
+                        <th>Sweets</th>
+                        <th>Peanuts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="location-cell">Sofia</td>
+                        <td class="price-cell">0.50</td>
+                        <td class="price-cell">0.80</td>
+                        <td class="price-cell">1.45</td>
+                        <td class="price-cell">1.60</td>
+                    </tr>
+                    <tr>
+                        <td class="location-cell">Plovdiv</td>
+                        <td class="price-cell">0.40</td>
+                        <td class="price-cell">0.70</td>
+                        <td class="price-cell">1.30</td>
+                        <td class="price-cell">1.50</td>
+                    </tr>
+                    <tr>
+                        <td class="location-cell">Varna</td>
+                        <td class="price-cell">0.45</td>
+                        <td class="price-cell">0.70</td>
+                        <td class="price-cell">1.35</td>
+                        <td class="price-cell">1.55</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="legend">
+            <div class="legend-title">Color Guide</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color color-sofia"></div>
+                    <span>Sofia Prices</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-plovdiv"></div>
+                    <span>Plovdiv Prices</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-varna"></div>
+                    <span>Varna Prices</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getPrice(location, product) {
+            const prices = {    
+                "Sofia": {
+                    "coffee": 0.50,
+                    "water": 0.80,
+                    "sweets": 1.45,
+                    "peanuts": 1.60,
+                },
+                "Plovdiv": {
+                    "coffee": 0.40,
+                    "water": 0.70,
+                    "sweets": 1.30,
+                    "peanuts": 1.50,
+                },
+                "Varna": {
+                    "coffee": 0.45,
+                    "water": 0.70,
+                    "sweets": 1.35,
+                    "peanuts": 1.55,
+                }
+            };
+
+            if (prices[location] && prices[location][product] !== undefined) {
+                return prices[location][product];
+            } else {
+                return undefined;
+            }
+        }
+
+        function searchPrice() {
+            const location = document.getElementById('locationSelect').value;
+            const product = document.getElementById('productSelect').value;
+            const resultDiv = document.getElementById('priceResult');
+
+            if (!location || !product) {
+                resultDiv.textContent = '⚠️ Select both location and product';
+                resultDiv.className = 'price-display';
+                return;
+            }
+
+            const price = getPrice(location, product);
+
+            if (price !== undefined) {
+                resultDiv.innerHTML = `<span class="currency">€</span> ${price.toFixed(2)}`;
+                resultDiv.className = 'price-display found';
+            } else {
+                resultDiv.textContent = '❌ Not found';
+                resultDiv.className = 'price-display not-found';
+            }
+        }
+
+        // Allow Enter key to search
+        document.getElementById('locationSelect').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchPrice();
+        });
+        document.getElementById('productSelect').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchPrice();
+        });
+    </script>
+</body>
+</html>
