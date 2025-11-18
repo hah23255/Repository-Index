@@ -1,4 +1,4 @@
-//we are given a sequence of commands : + Income:{sum}, + Spend:{sum},
+//we are given a sequence of commands : + Income:{sum}, + Expense:{sum},
 //write a function to process all commands and calculate the final balance (starting with 0 initially)
 
 function processExpenses(...commands) {
