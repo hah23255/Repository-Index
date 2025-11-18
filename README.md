@@ -1,7 +1,35 @@
 # Repository Index - @hah23255
-**Generated:** November 12, 2025  
-**Portfolio Version:** 2.0 (Post-MCP Cleanup)  
-**Total Repositories:** 26 (15 Active, 11 Archived)
+**Generated:** November 18, 2025  
+**Portfolio Version:** 2.1 (Current)  
+**Total Repositories:** 174+
+
+---
+
+## 🚀 Most Recently Updated Projects
+
+#### **aec-rag-system** ⭐ 🔴 FRESH
+- **Language:** Python
+- **Status:** 🟢 ACTIVE - Production Ready
+- **Visibility:** Public
+- **Description:** Production-grade RAG system for AEC design management with GraphRAG, Ollama, and FastAPI. Supports CAD/PDF parsing, version tracking, and impact analysis.
+- **Stars:** 1
+- **Last Updated:** 2025-11-18 (TODAY)
+- **URL:** https://github.com/hah23255/aec-rag-system
+
+#### **Repository-Index** 
+- **Language:** JavaScript
+- **Status:** 🟢 ACTIVE - Documentation
+- **Visibility:** Public
+- **Description:** Educational JavaScript examples with interactive HTML5 visualizations, modern tooling setup, and professional CI/CD pipeline
+- **Last Updated:** 2025-11-18 (TODAY)
+- **URL:** https://github.com/hah23255/Repository-Index
+
+#### **hah23255** (Profile)
+- **Status:** 🟢 Active
+- **Visibility:** Public
+- **Description:** GitHub Profile README
+- **Last Updated:** 2025-11-18 (TODAY)
+- **URL:** https://github.com/hah23255/hah23255
 
 ---
 
@@ -366,6 +394,6 @@ As of November 12, 2025, all MCP (Model Context Protocol) server development has
 
 ---
 
-**Last Updated:** November 12, 2025  
-**Version:** 2.0  
-**Status:** ✅ Portfolio optimized and secured
+**Last Updated:** November 18, 2025  
+**Version:** 2.1  
+**Status:** ✅ Portfolio updated and current
