@@ -143,3 +143,11 @@ build/Release
 # Test results
 test-results/
 junit.xml
+
+# Claude Flow metrics and runtime data
+.claude-flow/metrics/
+.claude-flow/*.log
+
+# Swarm memory database runtime files
+.swarm/*.db-shm
+.swarm/*.db-wal
