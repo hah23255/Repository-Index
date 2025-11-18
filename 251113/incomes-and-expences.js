@@ -1,5 +1,5 @@
-//we are given a sequence of comands : + Income:{sum}, + Spend:{sum},
-//write a function to procees all comands and calculate the final balance (starting with ) initially)
+//we are given a sequence of commands : + Income:{sum}, + Spend:{sum},
+//write a function to process all commands and calculate the final balance (starting with 0 initially)
 
 function processExpenses(...commands) {
     let balance = 0;
