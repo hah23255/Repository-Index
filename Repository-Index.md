@@ -1,11 +1,37 @@
 # Repository Index - @hah23255
-**Generated:** November 12, 2025  
-**Portfolio Version:** 2.0 (Post-MCP Cleanup)  
-**Total Repositories:** 26 (15 Active, 11 Archived)
+**Generated:** November 18, 2025  
+**Portfolio Version:** 2.1 (Current)  
+**Total Repositories:** 174+
 
 ---
 
-## 🚀 Active Repositories
+## 🚀 Most Recently Updated Projects
+
+#### **aec-rag-system** ⭐ 🔴 FRESH
+- **Language:** Python
+- **Status:** 🟢 ACTIVE - Production Ready
+- **Visibility:** Public
+- **Description:** Production-grade RAG system for AEC design management with GraphRAG, Ollama, and FastAPI. Supports CAD/PDF parsing, version tracking, and impact analysis.
+- **Stars:** 1
+- **Last Updated:** 2025-11-18 (TODAY)
+- **URL:** https://github.com/hah23255/aec-rag-system
+
+#### **Repository-Index** 
+- **Language:** JavaScript
+- **Status:** 🟢 ACTIVE - Documentation
+- **Visibility:** Public
+- **Description:** Educational JavaScript examples with interactive HTML5 visualizations, modern tooling setup, and professional CI/CD pipeline
+- **Last Updated:** 2025-11-18 (TODAY)
+- **URL:** https://github.com/hah23255/Repository-Index
+
+#### **hah23255** (Profile)
+- **Status:** 🟢 Active
+- **Visibility:** Public
+- **Description:** GitHub Profile README
+- **Last Updated:** 2025-11-18 (TODAY)
+- **URL:** https://github.com/hah23255/hah23255
+
+---
 
 ### Enterprise & Production Projects
 
@@ -366,155 +392,9 @@ As of November 12, 2025, all MCP (Model Context Protocol) server development has
 
 ---
 
-**Last Updated:** November 12, 2025  
-**Version:** 2.0  
-**Status:** ✅ Portfolio optimized and secured
-# Repository Index - @hah23255
-**Generated:** November 12, 2025  
-**Portfolio Version:** 2.0 (Post-MCP Cleanup)  
-**Total Repositories:** 26 (15 Active, 11 Archived)
-
----
-
-## 🚀 Active Repositories
-
-### Enterprise & Production Projects
-
-#### **quick-serve-enterprise** ⭐
-- **Language:** Rust
-- **Status:** 🟢 ACTIVE - Production Ready
-- **Visibility:** Public
-- **Description:** Enterprise edition of quick-serve HTTP server with custom error pages and bug fixes for Android/Termux deployment
-- **Stars:** 1
-- **Last Updated:** 2025-11-12
-- **URL:** https://github.com/hah23255/quick-serve-enterprise
-- **Features:** CI/CD enabled, Dependabot active
-
-#### **MemorySystems** ⭐
-- **Language:** Python
-- **Status:** 🟢 STABLE - ISO 26262 ASIL-D Compliant
-- **Visibility:** Private
-- **Description:** Enterprise-grade Memory Management System with ML Enhancement - ISO 26262 Compliant
-- **Stars:** 1
-- **Size:** 45 MB (9,406 files)
-- **Last Updated:** 2025-08-30
-- **Components:** 3 main modules, 6 test files, 4 docs
-- **Assessment:** Production-ready enterprise project
-
----
-
-### Security & AI Safety
-
-#### **silent-alarm-detector** ⭐
-- **Language:** Python
-- **Status:** 🟢 ACTIVE - Development
-- **Visibility:** Public
-- **Description:** Claude Code hook detecting LLM alarm-silencing patterns that cause crushing impact
-- **Stars:** 1
-- **Last Updated:** 2025-11-12
-- **URL:** https://github.com/hah23255/silent-alarm-detector
-- **Features:** CI/CD enabled, Dependabot active
-
-#### **claude-hooks-security-research** ⭐
-- **Language:** Python
-- **Status:** 🟢 ACTIVE - Research Complete
-- **Visibility:** Public
-- **Description:** Complete research on replacing MCP servers with Claude Code hooks. 100-150x faster, 90% less complex. Includes security automation, context optimization, and production-ready implementations.
-- **Stars:** 1
-- **Last Updated:** 2025-10-28
-- **URL:** https://github.com/hah23255/claude-hooks-security-research
-- **Features:** CI/CD enabled, Dependabot active
-- **Impact:** HIGH - Demonstrates MCP replacement technology
-
-#### **claude-hooks-public**
-- **Language:** Python
-- **Status:** 🟢 ACTIVE - Production Ready
-- **Visibility:** Public
-- **Description:** Production-ready security hooks for Claude Code CLI with Pydantic validation
-- **Last Updated:** 2025-10-30
-- **URL:** https://github.com/hah23255/claude-hooks-public
-- **Features:** CI/CD enabled, Dependabot active
-
-#### **claude-code-security-toolkit**
-- **Language:** Python
-- **Status:** 🟢 ACTIVE - Private
-- **Visibility:** Private
-- **Description:** Private security toolkit for Claude Code CLI - Comprehensive defensive measures addressing 15 identified security gaps
-- **Stars:** 1
-- **Last Updated:** 2025-10-29
-- **Features:** Dependabot active
-
----
-
-### Development Tools & Performance
-
-#### **cuda-wasm-project** ⭐
-- **Language:** JavaScript
-- **Status:** 🟡 STABLE - Complete
-- **Visibility:** Private
-- **Description:** High-performance GPU computing in the browser through CUDA to WebAssembly transpilation
-- **Stars:** 1
-- **Last Updated:** 2025-08-04
-- **Assessment:** Major integration complete (desktop + mobile)
-
-#### **memory-systems-arm64**
-- **Language:** Python
-- **Status:** 🟡 STABLE
-- **Visibility:** Private
-- **Description:** Unified Memory Systems for ARM64 - Samsung Galaxy Z Fold 7
-- **Last Updated:** 2025-08-25
-
----
-
-### Education & Learning
-
-#### **SoftUni_loanCalc**
-- **Language:** JavaScript
-- **Status:** 🟢 ACTIVE
-- **Visibility:** Public
-- **Description:** Introduction to AI Coding - project 1 - Loan Calculator BG
-- **Last Updated:** 2025-11-01
-- **URL:** https://github.com/hah23255/SoftUni_loanCalc
-- **Features:** Dependabot active
-
-#### **SoftUni_AI_VibeCoding**
-- **Language:** HTML
-- **Status:** 🟢 ACTIVE
-- **Visibility:** Private
-- **Last Updated:** 2025-11-01
-
-#### **skills-introduction-to-github**
-- **Language:** N/A
-- **Status:** 🟢 ACTIVE
-- **Visibility:** Public
-- **Description:** My clone repository
-- **Last Updated:** 2025-09-20
-- **URL:** https://github.com/hah23255/skills-introduction-to-github
-
----
-
-### Development Projects
-
-#### **construction-consultancy**
-- **Language:** TypeScript
-- **Status:** 🟢 ACTIVE
-- **Visibility:** Private
-- **Last Updated:** 2025-11-01
-
-#### **ai-skills-termux-setup**
-- **Language:** Shell
-- **Status:** 🟢 ACTIVE
-- **Visibility:** Private
-- **Description:** Complete AI skills setup for Termux - Private replication package (EYES ONLY)
-- **Last Updated:** 2025-10-26
-
-#### **monorepo**
-- **Language:** JavaScript
-- **Status:** 🟢 ACTIVE
-- **Visibility:** Private
-- **Last Updated:** 2025-10-22
-
----
+**Last Updated:** November 18, 2025  
+**Version:** 2.1  
+**Status:** ✅ Portfolio updated and current
 
 ## 🗄️ Archived Repositories
 
