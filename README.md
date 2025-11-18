@@ -1,21 +1,20 @@
-# VS Code JavaScript Examples
+# Repository Index & JavaScript Demos
 
 <div align="center">
 
-![CI](https://github.com/hah23255/VS-Code/workflows/CI/badge.svg)
+![CI](https://github.com/hah23255/Repository-Index/workflows/CI/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Node.js](https://img.shields.io/badge/node-%3E%3D14.0.0-green.svg)
 ![JavaScript](https://img.shields.io/badge/language-JavaScript-yellow.svg)
 ![HTML5](https://img.shields.io/badge/HTML5-interactive-orange.svg)
 
-**🎓 Educational JavaScript Examples | 🎮 Interactive Visualizations | 📊 Algorithm Demonstrations**
+**🏠 Repository Index | 🎮 Interactive Demos | 📊 Project Showcase**
 
-[![GitHub stars](https://img.shields.io/github/stars/hah23255/VS-Code?style=social)](https://github.com/hah23255/VS-Code)
-[![GitHub forks](https://img.shields.io/github/forks/hah23255/VS-Code?style=social)](https://github.com/hah23255/VS-Code/network)
+[![GitHub stars](https://img.shields.io/github/stars/hah23255/Repository-Index?style=social)](https://github.com/hah23255/Repository-Index)
+[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://hah23255.github.io/Repository-Index/)
 
 </div>
 
-A comprehensive collection of JavaScript examples demonstrating functions, expressions, and core programming concepts. Features interactive HTML visualizations and clean, educational code examples.
+A comprehensive repository showcase featuring both a complete repository index and interactive JavaScript demonstrations. Experience a modern web interface that displays all your repositories with metadata, filtering, and search capabilities alongside educational programming examples.
 
 ## 📁 Project Structure
 
