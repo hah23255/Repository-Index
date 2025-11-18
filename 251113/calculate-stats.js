@@ -1,17 +1,17 @@
 // write a function to calculate a status
 function calculateStats(...numbers) {
-  let sum = 0;
-  let min = Infinity;
-  let max = -Infinity;
+    let sum = 0;
+    let min = Infinity;
+    let max = -Infinity;
 
-  for (const num of numbers) {
-    sum += num;
-    if (num < min) min = num;
-    if (num > max) max = num;
-  }
+    for (const num of numbers) {
+        sum += num;
+        if (num < min) min = num;
+        if (num > max) max = num;
+    }
 
-  const average = sum / numbers.length;
-  return { min, max, average, sum };
+    const average = sum / numbers.length;
+    return { min, max, average, sum };
 }
 
 console.log(calculateStats(5, 10, 15, 20, 25)); // { min: 5, max: 25, average: 15, sum: 75 }

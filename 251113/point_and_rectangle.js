@@ -7,13 +7,13 @@
 // +On the rectangle border
 
 function pointOnRect(top, left, bottom, right, x, y) {
-  if (x > left && x < right && y > top && y < bottom) {
-    return "inside";
-  }
-  if (x < left || x > right || y < top || y > bottom) {
-    return "outside";
-  }
-  return "border";
+    if (x > left && x < right && y > top && y < bottom) {
+        return 'inside';
+    }
+    if (x < left || x > right || y < top || y > bottom) {
+        return 'outside';
+    }
+    return 'border';
 }
 
 // Example usage:

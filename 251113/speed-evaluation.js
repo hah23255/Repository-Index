@@ -5,15 +5,15 @@
 // • 0 < speed < 40 km/h → considered slow
 // • Speed ≤ 0 km/h is considered invalid
 function evaluateSpeed(speed) {
-  if (speed <= 0) {
-    return "invalid";
-  } else if (speed >= 100) {
-    return "fast";
-  } else if (speed >= 40) {
-    return "average";
-  } else {
-    return "slow";
-  }
+    if (speed <= 0) {
+        return 'invalid';
+    } else if (speed >= 100) {
+        return 'fast';
+    } else if (speed >= 40) {
+        return 'average';
+    } else {
+        return 'slow';
+    }
 }
 
 // Example usage:
