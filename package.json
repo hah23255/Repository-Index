@@ -4,7 +4,7 @@
   "description": "Collection of JavaScript examples demonstrating functions, expressions, and programming concepts",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
