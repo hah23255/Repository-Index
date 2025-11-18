@@ -13,7 +13,7 @@ const distance = (x1, y1, x2, y2) => Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 console.log(distance(100, 50, 250, 100));
 
 const factorial = (n) => {
-    if (n === 0) return 1;
-    return n * factorial(n - 1);
+  if (n === 0) return 1;
+  return n * factorial(n - 1);
 };
 console.log(factorial(5)); // 120

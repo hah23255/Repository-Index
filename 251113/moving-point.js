@@ -9,15 +9,15 @@
 // Moved point: (70, 130)
 // Moved point: (60, 150.5)
 function movePoints(pointJson, ...movesJson) {
-    const point = JSON.parse(pointJson);
-    console.log(`Initial point: (${point.x}, ${point.y})`);
+  const point = JSON.parse(pointJson);
+  console.log(`Initial point: (${point.x}, ${point.y})`);
 
-    for (const moveJson of movesJson) {
-        const move = JSON.parse(moveJson);
-        point.x += move.dx;
-        point.y += move.dy;
-        console.log(`Moved point: (${point.x}, ${point.y})`);
-    }
+  for (const moveJson of movesJson) {
+    const move = JSON.parse(moveJson);
+    point.x += move.dx;
+    point.y += move.dy;
+    console.log(`Moved point: (${point.x}, ${point.y})`);
+  }
 }
 
 // Example usage:
