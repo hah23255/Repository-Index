@@ -14,7 +14,7 @@
 //     return `Nums: ${result.join(' ')}`;
 // }
 
-// // Example usage:   
+// // Example usage:
 // console.log(specialNumbers(20, 30)); // Nums: 21 24 27
 // console.log(specialNumbers(100, 200)); // Nums: 102 120 123 126 129 132 162 192
 
@@ -27,8 +27,12 @@ function specialNumbers(start, end) {
         return result;
     }
 
-    let filterDiv3 = (num) => num % 3 == 0;
-    let filterContains2 = (num) => num.toString().includes('2');
-    let filters = (num) => filterDiv3(num) && filterContains2(num);
-    return "Nums: " + generateRange(start, end, filters);
+    const filterDiv3 = (num) => num % 3 === 0;
+    const filterContains2 = (num) => num.toString().includes('2');
+    const filters = (num) => filterDiv3(num) && filterContains2(num);
+    return 'Nums: ' + generateRange(start, end, filters);
 }
+
+// Example usage:
+console.log(specialNumbers(20, 30)); // Nums: 21 24 27
+console.log(specialNumbers(100, 200)); // Nums: 102 120 123 126 129 132 162 192

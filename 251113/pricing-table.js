@@ -1,4 +1,4 @@
-// Write a function getPrice(product, location) to return 
+// Write a function getPrice(product, location) to return
 // product price according to this pricing table:
 // Location|coffee|water|sweets|nuts
 // Sofia|0.50|0.80|1.20|1.45
@@ -7,24 +7,24 @@
 
 
 function getPrice(location, product) {
-    const prices = {    
-        "Sofia": {
-            "coffee": 0.50,
-            "water": 0.80,
-            "sweets": 1.45,
-            "peanuts": 1.60,
+    const prices = {
+        'Sofia': {
+            'coffee': 0.50,
+            'water': 0.80,
+            'sweets': 1.45,
+            'peanuts': 1.60,
         },
-        "Plovdiv": {
-            "coffee": 0.40,
-            "water": 0.70,
-            "sweets": 1.30,
-            "peanuts": 1.50,
+        'Plovdiv': {
+            'coffee': 0.40,
+            'water': 0.70,
+            'sweets': 1.30,
+            'peanuts': 1.50,
         },
-        "Varna": {
-            "coffee": 0.45,
-            "water": 0.70,
-            "sweets": 1.35,
-            "peanuts": 1.55,
+        'Varna': {
+            'coffee': 0.45,
+            'water': 0.70,
+            'sweets': 1.35,
+            'peanuts': 1.55,
         }
     };
 
@@ -35,6 +35,6 @@ function getPrice(location, product) {
     }
 }
 
-console.log(getPrice("Sofia", "water")); // 0.8
-console.log(getPrice("Varna", "sweets")); // 1.35
-console.log(getPrice("London", "water")); // undefined
+console.log(getPrice('Sofia', 'water')); // 0.8
+console.log(getPrice('Varna', 'sweets')); // 1.35
+console.log(getPrice('London', 'water')); // undefined

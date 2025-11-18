@@ -9,10 +9,10 @@
 
 function pointOnRect(top, left, bottom, right, x, y) {
     if ( (x > left) && (x < right) && (y > top) && (y < bottom) )
-        return "inside";
+    {return 'inside';}
     if ( (x < left) || (x > right) || (y < top) || (y > bottom) )
-        return "outside";
-    return "border";
+    {return 'outside';}
+    return 'border';
 }
 
 

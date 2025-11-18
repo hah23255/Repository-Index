@@ -4,16 +4,16 @@ function calculateStats(...numbers) {
     let min = Infinity;
     let max = -Infinity;
 
-    for (let num of numbers) {
+    for (const num of numbers) {
         sum += num;
         if (num < min) min = num;
         if (num > max) max = num;
     }
 
-    let average = sum / numbers.length;
+    const average = sum / numbers.length;
     return { min, max, average, sum };
 }
 
-console.log(calculateStats(5, 10, 15, 20, 25)); // { min: 5, max: 25, average: 15, sum: 75 }  
-console.log(calculateStats(2.50, -7.25, 17500.00, 0.25, 400, -0.5)); // { min: -7.25, max: 17500, average: 2982.5, sum: 17895 } 
+console.log(calculateStats(5, 10, 15, 20, 25)); // { min: 5, max: 25, average: 15, sum: 75 }
+console.log(calculateStats(2.50, -7.25, 17500.00, 0.25, 400, -0.5)); // { min: -7.25, max: 17500, average: 2982.5, sum: 17895 }
 

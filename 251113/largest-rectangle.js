@@ -1,7 +1,7 @@
 // write a function to take several rectangles , given as JSON and print the largest of them
 function findLargestRectangle(...rectangles) {
     let largestArea = 0;
-    let largestRectangle = null; 
+    let largestRectangle = null;
 
     for (const rectInput of rectangles) {
         const rect = typeof rectInput === 'string' ? JSON.parse(rectInput) : rectInput;
@@ -11,7 +11,7 @@ function findLargestRectangle(...rectangles) {
             largestRectangle = rect;
         }
     }
-    
+
     if (largestRectangle) {
         const area = largestRectangle.width * largestRectangle.height;
         console.log(`Largest rectangle: ${largestRectangle.width} x ${largestRectangle.height} -> area: ${area}`);
@@ -27,4 +27,4 @@ findLargestRectangle(
     '{"width":35, "height":15}',
 );
 
-          
+

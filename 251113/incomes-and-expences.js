@@ -19,5 +19,5 @@ function processExpenses(...commands) {
     return balance;
 }
 
-// Example usage:   
-console.log(processExpenses("Income: 50", "Income: 70", "Expense: 30", "Income: 100", "Expense: 40", "Income: 50"));
+// Example usage:
+console.log(processExpenses('Income: 50', 'Income: 70', 'Expense: 30', 'Income: 100', 'Expense: 40', 'Income: 50'));
