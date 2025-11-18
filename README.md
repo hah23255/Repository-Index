@@ -112,7 +112,7 @@ npm test
 > **🌐 [Live Demos on GitHub Pages](https://hah23255.github.io/VS-Code/)** | **🖼️ [View Visual Previews](./docs/VISUAL_PREVIEWS.md)** | **🚀 [Deployment Guide](./DEPLOYMENT.md)**
 
 | 🎯 **Live Demo** | 📝 **Description** | 🚀 **Key Features** | 🔧 **Tech Stack** |
-|------------------|-------------------|---------------------|--------------------|
+|------------------|-------------------|---------------------|--------------------| 
 | 🗺️ **[Plots of Land](https://hah23255.github.io/VS-Code/251113/plots-of-land.html)** | Interactive GPS mapping with polygon detection | Real Leaflet.js integration, Bulgarian landmarks | Leaflet, OpenStreetMap, Canvas |
 | 📐 **[Point & Rectangle](https://hah23255.github.io/VS-Code/251113/point_and_rectangle.html)** | Dynamic geometry visualization tool | Live coordinate tracking, boundary detection | HTML5 Canvas, Mathematical algorithms |
 | 💰 **[Pricing Table](https://hah23255.github.io/VS-Code/251113/pricing-table.html)** | Interactive data-driven pricing tool | Dynamic dropdowns, real-time calculations | Responsive design, Data filtering |
