@@ -102,14 +102,27 @@
 #### **claude-code-security-toolkit**
 
 - **Language:** Python
-- **Status:** 🟢 ACTIVE - Private
-- **Visibility:** Private
-- **Description:** Private security toolkit for Claude Code CLI - Comprehensive defensive measures addressing 15 identified security gaps
+- **Status:** 🟢 ACTIVE - Public
+- **Visibility:** Public
+- **Description:** Public security toolkit for Claude Code CLI - Comprehensive defensive measures addressing 15 identified security gaps
 - **Stars:** 1
-- **Last Updated:** 2025-10-29
+- **Last Updated:** 2025-11-19
 - **Features:** Dependabot active
 
 ---
+
+#### **security-vulnerabilities-cli-llm** ⭐⭐
+- **Language:** Markdown (Research Paper)
+- **Status:** �� ACTIVE - Published Research
+- **Visibility:** Public
+- **Description:** Security Vulnerabilities in CLI-Based LLM Deployments - Comprehensive research synthesis of 95 peer-reviewed sources
+- **Stars:** 0
+- **Last Updated:** 2025-11-19
+- **URL:** https://github.com/hah23255/security-vulnerabilities-cli-llm
+- **Features:** Issues, Wiki, Discussions enabled
+- **Impact:** HIGH - Academic research paper ready for arXiv submission
+- **Key Findings:** 98% attack success rate (FlipAttack), 97.2% prompt extraction, 94 documented CVEs
+- **Formats:** MD, PDF, RTF (40+ pages, 95 sources)
 
 ### Development Tools & Performance
 
