@@ -1,0 +1,12 @@
+# Config files that should follow their own formatting rules
+.eslintrc.js
+
+# Educational files with intentional violations
+251113/
+
+# Dependencies and build artifacts
+node_modules/
+coverage/
+dist/
+.vscode/
+.git/

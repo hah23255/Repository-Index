@@ -112,6 +112,7 @@
 ---
 
 #### **security-vulnerabilities-cli-llm** ⭐⭐
+
 - **Language:** Markdown (Research Paper)
 - **Status:** �� ACTIVE - Published Research
 - **Visibility:** Public

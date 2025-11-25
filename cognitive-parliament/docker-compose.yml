@@ -1,5 +1,5 @@
 # Cognitive Parliament - Docker Compose Configuration
-version: '3.8'
+version: "3.8"
 
 services:
   # Main application

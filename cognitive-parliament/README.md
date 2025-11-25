@@ -70,6 +70,7 @@ make coverage
 ## 🔒 Security
 
 This project follows security best practices:
+
 - Secrets management via external vault
 - Audit logging for all agent decisions
 - Rate limiting and DDoS protection

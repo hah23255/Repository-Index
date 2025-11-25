@@ -12,6 +12,7 @@
 **DO NOT** create public GitHub issues for security vulnerabilities.
 
 Instead:
+
 1. Email security@example.com with details
 2. Include "SECURITY" in the subject line
 3. Provide detailed description and reproduction steps

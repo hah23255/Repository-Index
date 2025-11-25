@@ -31,5 +31,12 @@ module.exports = {
         // Allow console for examples
         'no-console': 'off',
     },
-    ignorePatterns: ['node_modules/', 'coverage/', 'dist/', '.vscode/', '.git/', '251113/'],
+    ignorePatterns: [
+        'node_modules/',
+        'coverage/',
+        'dist/',
+        '.vscode/',
+        '.git/',
+        '251113/',
+    ],
 };
