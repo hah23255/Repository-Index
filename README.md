@@ -1,8 +1,8 @@
 # Repository Index - @hah23255
 
-**Generated:** November 18, 2025  
-**Portfolio Version:** 2.1 (Current)  
-**Total Repositories:** 174+
+**Generated:** November 28, 2025
+**Portfolio Version:** 2.2 (Current)
+**Total Repositories:** 178+ (including 157 synced forks)
 
 ---
 
@@ -191,6 +191,41 @@
 
 ---
 
+### n8n Workflow Automation
+
+> **Full Documentation:** [n8n-Capability.md](./n8n-Capability.md)
+
+#### Collection Overview
+
+| Repository | Stars | Workflows | Focus |
+|------------|-------|-----------|-------|
+| [awesome-n8n-templates](https://github.com/hah23255/awesome-n8n-templates) | 16,159 | 500+ | Multi-category curated |
+| [n8n-templates](https://github.com/hah23255/n8n-templates) | 1,326 | 50+ | SEO & content |
+| [n8n-ai-automations](https://github.com/hah23255/n8n-ai-automations) | 1,072 | 40+ | AI agents & video |
+| [waha-n8n-templates](https://github.com/hah23255/waha-n8n-templates) | 145 | 10+ | WhatsApp WAHA |
+| [n8n-workflows-1](https://github.com/hah23255/n8n-workflows-1) | 3 | 2,053 | Archive collection |
+
+- **Total Workflows:** 2,100+
+- **Status:** 🟢 ACTIVE - All forks synced Nov 28, 2025
+- **Last Synced:** 2025-11-28
+
+#### Key Capabilities
+
+| Category | Integrations |
+|----------|--------------|
+| **Email** | Gmail, Outlook, IMAP + AI labeling |
+| **Messaging** | Telegram (18+), WhatsApp WAHA suite |
+| **Google** | Drive, Sheets, Calendar + RAG |
+| **AI Agents** | Marketing, Dental, Gmail, Web Dev |
+| **Video** | Sora 2, Veo 3, HeyGen, Vizard |
+| **SEO** | Keyword tracking, audits, SERP analysis |
+
+#### AI/LLM Support
+
+OpenAI/GPT-4 | Claude | Gemini | ElevenLabs | DeepSeek | LangChain
+
+---
+
 ## 🗄️ Archived Repositories
 
 ### Recently Archived - MCP Cleanup (2025-11-12)
@@ -363,6 +398,14 @@
 
 ## 🔄 Recent Changes
 
+### 2025-11-28 - n8n Workflow Collection & Fork Sync
+
+- ✅ Added 5 n8n workflow repositories (2,100+ templates)
+- ✅ Synced 157/178 forks with upstream (100% syncable)
+- ✅ Added `workflow` scope to GitHub token
+- ✅ Created [n8n-Capability.md](./n8n-Capability.md) documentation
+- ✅ 21 repos intentionally frozen (20 archived + 1 DMCA)
+
 ### 2025-11-12 - Major Portfolio Cleanup
 
 - ✅ Archived 10 repositories (7 empty + 3 MCP servers)
@@ -374,11 +417,11 @@
 
 ### Portfolio Health
 
-- **Before Cleanup:** 26 repos (16 active, 10 needing review)
-- **After Cleanup:** 26 repos (15 active, 11 archived)
-- **Security Coverage:** 47% → 100% of active repos
-- **CI/CD Coverage:** 4% → 20% of active repos
-- **Health Grade:** B+ → A
+- **Total Forks:** 178 (157 synced, 21 frozen)
+- **Fork Sync Rate:** 100% of syncable repos
+- **Security Coverage:** 100% of active repos
+- **CI/CD Coverage:** 20% of active repos
+- **Health Grade:** A
 
 ---
 
@@ -435,6 +478,13 @@ As of November 12, 2025, all MCP (Model Context Protocol) server development has
 - cuda-wasm-project
 - memory-systems-arm64
 
+**n8n Automation:** (2,100+ workflows)
+
+- [awesome-n8n-templates](https://github.com/hah23255/awesome-n8n-templates) (16K stars)
+- [n8n-ai-automations](https://github.com/hah23255/n8n-ai-automations) (AI agents)
+- [waha-n8n-templates](https://github.com/hah23255/waha-n8n-templates) (WhatsApp)
+- [Full capability docs](./n8n-Capability.md)
+
 **Education:**
 
 - SoftUni_loanCalc
@@ -443,6 +493,6 @@ As of November 12, 2025, all MCP (Model Context Protocol) server development has
 
 ---
 
-**Last Updated:** November 18, 2025  
-**Version:** 2.1  
+**Last Updated:** November 28, 2025
+**Version:** 2.2
 **Status:** ✅ Portfolio updated and current
